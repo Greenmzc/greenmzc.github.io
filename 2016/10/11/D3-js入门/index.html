@@ -15,15 +15,19 @@
 
 
 
-<meta name="description" content="Green&apos;s Personal Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Green的博客 | Green's Blog">
-<meta property="og:url" content="https://greenmzc.github.io/tags/shell/index.html">
+<meta name="description" content="D3.js是一个通过数据来操作文档JavaScript库。结合SVG，D3特别适合用于图表的绘制，但D3本身并不是一个图表库，它把数据绑定到DOM中，利用SVG输出图表。本文所讲内容适用于v4.0+版本。
+从v4.0开始，D3把各个模块分离开来，各个模块相互独立，也就是说如果你只需要用到D3强大的数组操作部分，只需引用d3-array部分(例如npm install d3-array)，不需要引用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="D3.js入门">
+<meta property="og:url" content="https://greenmzc.github.io/2016/10/11/D3-js入门/index.html">
 <meta property="og:site_name" content="Green的博客 | Green's Blog">
-<meta property="og:description" content="Green&apos;s Personal Blog">
+<meta property="og:description" content="D3.js是一个通过数据来操作文档JavaScript库。结合SVG，D3特别适合用于图表的绘制，但D3本身并不是一个图表库，它把数据绑定到DOM中，利用SVG输出图表。本文所讲内容适用于v4.0+版本。
+从v4.0开始，D3把各个模块分离开来，各个模块相互独立，也就是说如果你只需要用到D3强大的数组操作部分，只需引用d3-array部分(例如npm install d3-array)，不需要引用">
+<meta property="og:updated_time" content="2016-10-12T06:09:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Green的博客 | Green's Blog">
-<meta name="twitter:description" content="Green&apos;s Personal Blog">
+<meta name="twitter:title" content="D3.js入门">
+<meta name="twitter:description" content="D3.js是一个通过数据来操作文档JavaScript库。结合SVG，D3特别适合用于图表的绘制，但D3本身并不是一个图表库，它把数据绑定到DOM中，利用SVG输出图表。本文所讲内容适用于v4.0+版本。
+从v4.0开始，D3把各个模块分离开来，各个模块相互独立，也就是说如果你只需要用到D3强大的数组操作部分，只需引用d3-array部分(例如npm install d3-array)，不需要引用">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -55,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Tag: shell | Green的博客 | Green&#39;s Blog</title>
+<title>D3.js入门 | Green的博客 | Green&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -65,9 +69,9 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
-        isTag: true,
+        isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
@@ -243,55 +247,184 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-D3-js入门" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/10/06/开始使用hexo搭建博客/" class="archive-article-date">
-      <time datetime="2016-10-06T14:05:10.000Z" itemprop="datePublished">10-06</time>
+    <div class="article-meta">
+      <a href="/2016/10/11/D3-js入门/" class="article-date">
+      <time datetime="2016-10-11T09:34:15.000Z" itemprop="datePublished">2016-10-11</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/06/开始使用hexo搭建博客/">开始使用hexo搭建博客</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      D3.js入门
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/D3/">D3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>D3.js是一个通过数据来操作文档JavaScript库。结合SVG，D3特别适合用于图表的绘制，但D3本身并不是一个图表库，它把数据绑定到DOM中，利用SVG输出图表。本文所讲内容适用于v4.0+版本。</p>
+<p>从v4.0开始，D3把各个模块分离开来，各个模块相互独立，也就是说如果你只需要用到D3强大的数组操作部分，只需引用<code>d3-array</code>部分(例如npm install d3-array)，不需要引用所有的D3库。这样做能够使前端模块化开发更加灵活，减小引用资源体积，节省性能。</p>
+<h3 id="用D3选择DOM元素"><a href="#用D3选择DOM元素" class="headerlink" title="用D3选择DOM元素"></a>用D3选择DOM元素</h3>
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/10/11/D3-js入门/">D3.js入门</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Green</a></p>
+        <p><span>发布时间:</span>2016-10-11, 17:34:15</p>
+        <p><span>最后更新:</span>2016-10-12, 14:09:50</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/11/D3-js入门/" title="D3.js入门">https://greenmzc.github.io/2016/10/11/D3-js入门/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://greenmzc.github.io/2016/10/11/D3-js入门/　　作者: Green" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/10/06/开始使用hexo搭建博客/">
+                    开始使用hexo搭建博客
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#用D3选择DOM元素"><span class="toc-number">1.</span> <span class="toc-text">用D3选择DOM元素</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
 
     
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"D3.js入门　| Green的博客 | Green's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/11/D3-js入门/" data-title="D3.js入门" data-url="https://greenmzc.github.io/2016/10/11/D3-js入门/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"greenmzc"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/10/06/开始使用hexo搭建博客/" title="下一篇: 开始使用hexo搭建博客">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/11/D3-js入门/">D3.js入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/06/开始使用hexo搭建博客/">开始使用hexo搭建博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/30/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 
 </div>
       <footer id="footer">
