@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Green的博客 | Green's Blog">
 <meta property="og:description" content="D3.js是一个通过数据来操作文档JavaScript库。结合SVG，D3特别适合用于图表的绘制，但D3本身并不是一个图表库，它把数据绑定到DOM中，利用SVG输出图表。本文所讲内容适用于v4.0+版本。
 从v4.0开始，D3把各个模块分离开来，各个模块相互独立，也就是说如果你只需要用到D3强大的数组操作部分，只需引用d3-array部分(例如npm install d3-array)，不需要引用">
-<meta property="og:updated_time" content="2016-10-12T06:30:42.000Z">
+<meta property="og:updated_time" content="2016-10-12T10:59:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3.js入门">
 <meta name="twitter:description" content="D3.js是一个通过数据来操作文档JavaScript库。结合SVG，D3特别适合用于图表的绘制，但D3本身并不是一个图表库，它把数据绑定到DOM中，利用SVG输出图表。本文所讲内容适用于v4.0+版本。
@@ -49,7 +49,7 @@
 
 
     <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-minimal.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -87,6 +87,8 @@
     <script> yiliaConfig.rootUrl = "\/";</script>
 
 
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56ff76c972fc0cf9"></script>
 
 
 
@@ -299,28 +301,18 @@
           
         <p>D3.js是一个通过数据来操作文档JavaScript库。结合SVG，D3特别适合用于图表的绘制，但D3本身并不是一个图表库，它把数据绑定到DOM中，利用SVG输出图表。本文所讲内容适用于v4.0+版本。</p>
 <p>从v4.0开始，D3把各个模块分离开来，各个模块相互独立，也就是说如果你只需要用到D3强大的数组操作部分，只需引用<code>d3-array</code>部分(例如npm install d3-array)，不需要引用所有的D3库。这样做能够使前端模块化开发更加灵活，减小引用资源体积，节省性能。</p>
-<h3 id="用D3选择DOM元素"><a href="#用D3选择DOM元素" class="headerlink" title="用D3选择DOM元素"></a>用D3选择DOM元素</h3>
+<h3 id="用D3选择DOM元素"><a href="#用D3选择DOM元素" class="headerlink" title="用D3选择DOM元素"></a>用D3选择DOM元素</h3><ul>
+<li><code>d3.select()</code> 返回匹配选择器的第一个元素</li>
+<li><code>d3.selectAll()</code> 返回匹配选择器所有元素</li>
+</ul>
+<p>比如d3.select(‘p’)可以选择所有的p元素</p>
+
       
     </div>
     
   </div>
   
     
-    <div class="copyright">
-        <p><span>Title:</span><a href="/2016/10/11/D3-js入门/">D3.js入门</a></p>
-        <p><span>Author:</span><a href="/" title="Back to Homepage">Green</a></p>
-        <p><span>Created:</span>2016-10-11, 17:34:15</p>
-        <p><span>Updated:</span>2016-10-12, 14:30:42</p>
-        <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/10/11/D3-js入门/" title="D3.js入门">https://greenmzc.github.io/2016/10/11/D3-js入门/</a>
-            <span class="copy-path" data-clipboard-text="From https://greenmzc.github.io/2016/10/11/D3-js入门/　　By Green" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
-        </p>
-    </div>
-
 
 
     <nav id="article-nav">
@@ -365,21 +357,9 @@
     
 <div class="share">
     
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
-        </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"D3.js入门　| Green的博客 | Green's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
 
+    
+        <div class="addthis_sharing_toolbox"></div>
     
 </div>
 
