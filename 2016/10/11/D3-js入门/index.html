@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://greenmzc.github.io/img/2016101401.png">
 <meta property="og:image" content="https://greenmzc.github.io/img/2016101402.png">
 <meta property="og:image" content="https://greenmzc.github.io/img/2016101403.png">
-<meta property="og:updated_time" content="2016-10-14T04:17:20.000Z">
+<meta property="og:updated_time" content="2016-10-14T05:12:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3.js入门">
 <meta name="twitter:description" content="D3.js是一个通过数据来操作文档JavaScript库。结合SVG，D3特别适合用于图表的绘制，但D3本身并不是一个图表库，它把数据绑定到DOM中，利用SVG输出图表。本文所讲内容适用于v4.0+版本
@@ -348,7 +348,7 @@
 <li><code>selection.enter()</code> 为缺失的元素返回占位符</li>
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Dog<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> dataset = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line">    <span class="keyword">var</span> p = d3.select(<span class="string">'body'</span>).selectAll(<span class="string">'p'</span>);</div><div class="line">    <span class="comment">// 目前只有1个元素，3个数据值</span></div><div class="line">    enter = p.data(dataset).enter();</div><div class="line">    <span class="built_in">console</span>.log(enter);</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>查看控制台，发现出现了2个并不真实的EnterNode，绑定了剩余的数据，这就是enter部分，如果后面继续添加新的标签，标签会被自动绑定剩余数据<br><img src="/img/2016101402.png" width="400" height="350" title="2016101402"></p>
+<p>查看控制台，发现出现了2个并不真实存在的EnterNode，绑定了剩余的数据，这就是enter部分，如果后面继续添加新的标签，标签会被自动绑定剩余数据<br><img src="/img/2016101402.png" width="400" height="350" title="2016101402"></p>
 <ul>
 <li><code>selection.exit()</code> 返回没有被绑定数据的元素</li>
 </ul>
@@ -463,7 +463,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/11/D3-js入门/">D3.js入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/06/开始使用hexo搭建博客/">开始使用hexo搭建博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/30/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/11/D3-js入门/">D3.js入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/06/开始使用hexo搭建博客/">开始使用hexo搭建博客</a></li></ul>
 
 
 
