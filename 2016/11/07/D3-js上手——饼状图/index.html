@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://greenmzc.github.io/img/2016110703.png">
 <meta property="og:image" content="https://greenmzc.github.io/img/2016110704.png">
 <meta property="og:image" content="https://greenmzc.github.io/img/2016110705.png">
-<meta property="og:updated_time" content="2017-02-14T03:11:56.000Z">
+<meta property="og:updated_time" content="2017-02-14T03:20:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3.js上手——饼状图">
 <meta name="twitter:description" content="饼状图是数据统计中经常用到的另一类图表，饼图可以直观地显示一个数据系列中各项的大小与各项总和的比例，本文将使用D3上手制作一个简单的饼状图">
@@ -310,7 +310,7 @@
           
         <p>饼状图是数据统计中经常用到的另一类图表，饼图可以直观地显示一个数据系列中各项的大小与各项总和的比例，本文将使用D3上手制作一个简单的饼状图</p>
 <a id="more"></a>
-<h3 id="什么是布局"><a href="#什么是布局" class="headerlink" title="什么是布局:"></a>什么是布局:</h3><p>布局是D3中非常重要的内容，有了布局D3才能画出复杂的矢量图。但布局并不是直接绘制图形，只是将初始数据转换成容易画图的图形语言，画图工具能读懂图形语言来进行绘制。</p>
+<h3 id="什么是布局"><a href="#什么是布局" class="headerlink" title="什么是布局"></a>什么是布局</h3><p>布局是D3中非常重要的内容，有了布局D3才能画出复杂的矢量图。但布局并不是直接绘制图形，只是将初始数据转换成容易画图的图形语言，画图工具能读懂图形语言来进行绘制。</p>
 <p>在绘制饼状图中，例如有一组数据[1, 2, 3]，只依靠这些数据是画不出的，需要将这些数据转化为圆形的起始角度和终止角度，第一块的角度区域为[0, π/3]，第二块的角度区域为[π/3, π]……绘制工具能根据这些角度值进行绘制。<code>布局只进行数据转换</code></p>
 <p>D3还提供其他常用图表的布局函数，比如<code>力导向图</code>(Force)、<code>弦图</code>(Chord)、<code>树状图</code>(Tree)、<code>直方图</code>(Histogram)、<code>分区图</code>(Partition)等，每种布局有对应的API</p>
 <h3 id="确定数据"><a href="#确定数据" class="headerlink" title="确定数据"></a>确定数据</h3><p>表格数据是来自<a href="http://www.w3schools.com/browsers/" target="_blank" rel="external">w3schools</a>的2016年9月的浏览器使用率</p>
@@ -423,7 +423,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是布局"><span class="toc-number">1.</span> <span class="toc-text">什么是布局:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#确定数据"><span class="toc-number">2.</span> <span class="toc-text">确定数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立布局"><span class="toc-number">3.</span> <span class="toc-text">建立布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成弧生成器"><span class="toc-number">4.</span> <span class="toc-text">生成弧生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制饼图"><span class="toc-number">5.</span> <span class="toc-text">绘制饼图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加标注"><span class="toc-number">6.</span> <span class="toc-text">添加标注</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是布局"><span class="toc-number">1.</span> <span class="toc-text">什么是布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#确定数据"><span class="toc-number">2.</span> <span class="toc-text">确定数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立布局"><span class="toc-number">3.</span> <span class="toc-text">建立布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成弧生成器"><span class="toc-number">4.</span> <span class="toc-text">生成弧生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制饼图"><span class="toc-number">5.</span> <span class="toc-text">绘制饼图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加标注"><span class="toc-number">6.</span> <span class="toc-text">添加标注</span></a></li></ol>
         
     </div>
     <style>
