@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="Chinese, English">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Green" />
+
+
+
+<meta name="description" content="折线图是数据统计中经常会用到的图表，用于二维数据的展示，本文将使用D3上手制作一个简单的折线图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="D3.js上手——折线图">
+<meta property="og:url" content="https://greenmzc.github.io/2016/10/18/D3-js上手——折线图/index.html">
+<meta property="og:site_name" content="Green的博客 | Green's Blog">
+<meta property="og:description" content="折线图是数据统计中经常会用到的图表，用于二维数据的展示，本文将使用D3上手制作一个简单的折线图">
+<meta property="og:image" content="https://greenmzc.github.io/img/2016101701.png">
+<meta property="og:image" content="https://greenmzc.github.io/img/2016101702.png">
+<meta property="og:updated_time" content="2016-11-04T03:42:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="D3.js上手——折线图">
+<meta name="twitter:description" content="折线图是数据统计中经常会用到的图表，用于二维数据的展示，本文将使用D3上手制作一个简单的折线图">
+<meta name="twitter:image" content="https://greenmzc.github.io/img/2016101701.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Green的博客 | Green&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/green/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>D3.js上手——折线图 | Green的博客 | Green&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56ff76c972fc0cf9"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?74f5c9dc68aa8b1babf7bd3c11285f9b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Green</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:15869186780@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/Greenmzc" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/D3/">D3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://fangyi.me">Phieo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://excaliburhan.com">虚夜宫</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.ggfly.me">郁川溪畔</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://nickliuyong.github.io/blogs/">NickLiu</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.icdoit.com">没事溜达</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.lixuejiang.me">风君子</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Green</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Green</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:15869186780@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Greenmzc" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-D3-js上手——折线图" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/18/D3-js上手——折线图/" class="article-date">
+      <time datetime="2016-10-18T02:42:55.000Z" itemprop="datePublished">2016-10-18</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      D3.js上手——折线图
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/D3/">D3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>折线图是数据统计中经常会用到的图表，用于二维数据的展示，本文将使用D3上手制作一个简单的折线图</p>
+<a id="more"></a>
+<h3 id="确定数据"><a href="#确定数据" class="headerlink" title="确定数据"></a>确定数据</h3><p>表格数据是一家店铺一年的销售量</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">月份</th>
+<th style="text-align:center">销售量(件)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1月</td>
+<td style="text-align:center">454</td>
+</tr>
+<tr>
+<td style="text-align:center">2月</td>
+<td style="text-align:center">628</td>
+</tr>
+<tr>
+<td style="text-align:center">3月</td>
+<td style="text-align:center">756</td>
+</tr>
+<tr>
+<td style="text-align:center">4月</td>
+<td style="text-align:center">632</td>
+</tr>
+<tr>
+<td style="text-align:center">5月</td>
+<td style="text-align:center">582</td>
+</tr>
+<tr>
+<td style="text-align:center">6月</td>
+<td style="text-align:center">704</td>
+</tr>
+<tr>
+<td style="text-align:center">7月</td>
+<td style="text-align:center">766</td>
+</tr>
+<tr>
+<td style="text-align:center">8月</td>
+<td style="text-align:center">804</td>
+</tr>
+<tr>
+<td style="text-align:center">9月</td>
+<td style="text-align:center">884</td>
+</tr>
+<tr>
+<td style="text-align:center">10月</td>
+<td style="text-align:center">960</td>
+</tr>
+<tr>
+<td style="text-align:center">11月</td>
+<td style="text-align:center">1095</td>
+</tr>
+<tr>
+<td style="text-align:center">12月</td>
+<td style="text-align:center">1250</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dataset = [[<span class="number">1</span>, <span class="number">224</span>], [<span class="number">2</span>, <span class="number">528</span>], [<span class="number">3</span>, <span class="number">756</span>], [<span class="number">4</span>, <span class="number">632</span>], [<span class="number">5</span>, <span class="number">582</span>], [<span class="number">6</span>, <span class="number">704</span>],</div><div class="line">              [<span class="number">7</span>, <span class="number">766</span>], [<span class="number">8</span>, <span class="number">804</span>], [<span class="number">9</span>, <span class="number">884</span>], [<span class="number">10</span>, <span class="number">960</span>], [<span class="number">11</span>, <span class="number">1095</span>], [<span class="number">12</span>, <span class="number">1250</span>]];</div></pre></td></tr></table></figure>
+<p>要找出最大值和最小值，需要用到D3的数组方法</p>
+<ul>
+<li><code>d3.min(array[,accessor])</code> 返回数组中的最小值</li>
+<li><code>d3.max(array[,accessor])</code> 返回数组中的最大值</li>
+</ul>
+<p>accessor是一个执行min或max函数前调用的方法，因为dataset是一个二维数组，因此需要在每一项数组拿出来后返回子数组中的第二个数值，可以取得1至12月份销售量的最大值和最小值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> min = d3.min(dataset, <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> d[<span class="number">1</span>];</div><div class="line">&#125;)</div><div class="line"><span class="keyword">var</span> max = d3.max(dataset, <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> d[<span class="number">1</span>];</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>还需要一些画图的基础数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 图表的宽度和高度</span></div><div class="line"><span class="keyword">var</span> width = <span class="number">600</span>;</div><div class="line"><span class="keyword">var</span> height = <span class="number">600</span>;</div><div class="line"><span class="comment">// 预留给轴线的距离</span></div><div class="line"><span class="keyword">var</span> padding = &#123; <span class="attr">top</span>: <span class="number">50</span>, <span class="attr">right</span>: <span class="number">50</span>, <span class="attr">bottom</span>: <span class="number">50</span>, <span class="attr">left</span>: <span class="number">50</span> &#125;;</div></pre></td></tr></table></figure>
+<h3 id="设置比例尺"><a href="#设置比例尺" class="headerlink" title="设置比例尺"></a>设置比例尺</h3><p>由于画布的大小有限，数据值很大，所以折线图通常要用到线性比例尺，用画布上的距离来代表图表中量化的数值</p>
+<ul>
+<li><code>d3.scaleLinear()</code> 设置一个线性比例尺</li>
+<li><code>quantize.domain([domain])</code> 取得或设置比例尺的定义域</li>
+<li><code>quantize.range([range])</code> 取得或设置比例尺的值域</li>
+</ul>
+<p>在x轴方向，数据从1月份到12月份，画布上的对应距离为画布宽度减去左右空隙，在y轴方向同理，不过y轴的值域是颠倒的，因为y轴的零点在最下面，刻度从下往上的递增</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xScale = d3.scaleLinear()</div><div class="line">              .domain([<span class="number">1</span>, <span class="number">12</span>])</div><div class="line">              .range([<span class="number">0</span>, width - padding.left - padding.right]);</div><div class="line"></div><div class="line"><span class="keyword">var</span> yScale = d3.scaleLinear()</div><div class="line">              .domain([<span class="number">0</span>, max])</div><div class="line">              .range([height - padding.top - padding.bottom, <span class="number">0</span>]);</div></pre></td></tr></table></figure>
+<h3 id="绘制轴线"><a href="#绘制轴线" class="headerlink" title="绘制轴线"></a>绘制轴线</h3><ul>
+<li><code>d3.axisBottom(scale)</code> 创建一个新的轴生成器</li>
+<li><code>d3.axisBottom(scale).scale([scale])</code> 设置或者取得比例尺</li>
+</ul>
+<p>有了比例尺就可以绘制轴线了，创建比例尺，并调用刚才设置的比例尺</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> svg = d3.select(<span class="string">'body'</span>)</div><div class="line">            .append(<span class="string">'svg'</span>)</div><div class="line">            .attr(<span class="string">'width'</span>, width + <span class="string">'px'</span>)</div><div class="line">            .attr(<span class="string">'height'</span>, height + <span class="string">'px'</span>);</div><div class="line"><span class="keyword">var</span> xAxis = d3.axisBottom()</div><div class="line">              .scale(xScale);</div><div class="line"><span class="keyword">var</span> yAxis = d3.axisLeft()</div><div class="line">              .scale(yScale);</div></pre></td></tr></table></figure>
+<p>在svg中需要一个容器来装轴线，就是装载群组的g标签，在g标签中调用轴生成器，生成例如path、line、text等svg标签组成的轴线</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">svg.append(<span class="string">'g'</span>)</div><div class="line">  .attr(<span class="string">'class'</span>, <span class="string">'axis'</span>)</div><div class="line">  .attr(<span class="string">'transform'</span>, <span class="string">'translate('</span> + padding.left + <span class="string">','</span> + (height - padding.bottom) + <span class="string">')'</span>)</div><div class="line">  .call(xAxis);</div><div class="line">svg.append(<span class="string">'g'</span>)</div><div class="line">  .attr(<span class="string">'class'</span>, <span class="string">'axis'</span>)</div><div class="line">  .attr(<span class="string">'transform'</span>, <span class="string">'translate('</span> + padding.left + <span class="string">','</span> + padding.top + <span class="string">')'</span>)</div><div class="line">  .call(yAxis);</div></pre></td></tr></table></figure>
+<p>绘制的轴线图如下所示</p>
+<img src="/img/2016101701.png" width="400" height="400" title="2016101701">
+<h3 id="绘制曲线"><a href="#绘制曲线" class="headerlink" title="绘制曲线"></a>绘制曲线</h3><ul>
+<li><code>d3.line()</code> 新建一个线生成器</li>
+<li><code>line.x([x])</code> 设置或获取x-坐标访问器</li>
+<li><code>line.y([y])</code> 设置或获取y-坐标访问器</li>
+</ul>
+<p>D3为了生成各种线段、形状、图形，内置了路径生成器，这里需要用到线段生成器，并指定二维的访问器，调用刚才设置的比例尺</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> linePath = d3.line()</div><div class="line">                .x(<span class="function"><span class="keyword">function</span>(<span class="params">d</span>)</span>&#123; <span class="keyword">return</span> xScale(d[<span class="number">0</span>]) &#125;)</div><div class="line">                .y(<span class="function"><span class="keyword">function</span>(<span class="params">d</span>)</span>&#123; <span class="keyword">return</span> yScale(d[<span class="number">1</span>]) &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">svg.append(<span class="string">'g'</span>)</div><div class="line">  .append(<span class="string">'path'</span>)</div><div class="line">  .attr(<span class="string">'class'</span>, <span class="string">'line-path'</span>)</div><div class="line">  .attr(<span class="string">'transform'</span>, <span class="string">'translate('</span> + padding.left + <span class="string">','</span> + padding.top + <span class="string">')'</span>)</div><div class="line">  .attr(<span class="string">'d'</span>, linePath(dataset))</div><div class="line">  .attr(<span class="string">'fill'</span>, <span class="string">'none'</span>)</div><div class="line">  .attr(<span class="string">'stroke-width'</span>, <span class="number">3</span>)</div><div class="line">  .attr(<span class="string">'stroke'</span>, <span class="string">'green'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">svg.append(<span class="string">'g'</span>)</div><div class="line">  .selectAll(<span class="string">'circle'</span>)</div><div class="line">  .data(dataset)</div><div class="line">  .enter()</div><div class="line">  .append(<span class="string">'circle'</span>)</div><div class="line">  .attr(<span class="string">'r'</span>, <span class="number">5</span>)</div><div class="line">  .attr(<span class="string">'transform'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">d</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'translate('</span> + (xScale(d[<span class="number">0</span>]) + padding.left) + <span class="string">','</span> + (yScale(d[<span class="number">1</span>]) + padding.top) + <span class="string">')'</span></div><div class="line">  &#125;)</div><div class="line">  .attr(<span class="string">'fill'</span>, <span class="string">'green'</span>);</div></pre></td></tr></table></figure>
+<p>最终绘制的轴线图如下所示</p>
+<img src="/img/2016101702.png" width="400" height="400" title="2016101702">
+<p><a href="http://codepen.io/greenmzc/pen/mAjAaN/" target="_blank" rel="external">查看完整示例代码</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/11/07/D3-js上手——饼状图/">
+                    D3.js上手——饼状图
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/10/11/D3-js入门/">
+                    D3.js入门
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#确定数据"><span class="toc-number">1.</span> <span class="toc-text">确定数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置比例尺"><span class="toc-number">2.</span> <span class="toc-text">设置比例尺</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制轴线"><span class="toc-number">3.</span> <span class="toc-text">绘制轴线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制曲线"><span class="toc-number">4.</span> <span class="toc-text">绘制曲线</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/18/D3-js上手——折线图/" data-title="D3.js上手——折线图" data-url="https://greenmzc.github.io/2016/10/18/D3-js上手——折线图/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"greenmzc"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/11/07/D3-js上手——饼状图/" title="上一篇: D3.js上手——饼状图">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/10/11/D3-js入门/" title="下一篇: D3.js入门">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/14/CSS背景渐变/">CSS背景渐变</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/07/D3-js上手——饼状图/">D3.js上手——饼状图</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/18/D3-js上手——折线图/">D3.js上手——折线图</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/11/D3-js入门/">D3.js入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/06/开始使用hexo搭建博客/">开始使用hexo搭建博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i>
+                2016-2017 Green
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
